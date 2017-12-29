@@ -1,0 +1,48 @@
+<!doctype html>
+<html >
+	<head>
+		<meta charset="utf-8" />
+		<title>登录</title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width" />
+		<base href="/" />
+		<link rel="stylesheet" type="text/css"
+		    href="/webjars/bootstrap/css/bootstrap.min.css" />
+		<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+		<script type="text/javascript"
+		    src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+		<script>
+		//获取浏览器参数a和b
+	    function getQueryString(name) {		    
+	        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+	        var r = window.location.search.substr(1).match(reg);
+	        if (r != null) return unescape(r[2]); return null;
+	    };
+		
+		
+			$(function(){
+				
+				
+			});
+			
+			
+			
+			
+		</script>
+	</head>
+	<body>
+		<div style="margin:20px;text-align:center;width:400px">
+			<div  id="loginform">
+			<ul style="margin:20px;list-style:none">
+				<li><label style="">用户名:</label><input style="margin-left:40px;" name="username" type="text" id="username"/></li>
+				<li><label>密码:</label><input style="margin-left:53px;" name="pword" type="password" id="pword"/></li>
+				<li><button type="button" style="margin-left:" id="loginAndOauth" > 登录并授权</button></li>
+			</ul>
+			</div>
+			<div>
+				<button type="button" id="oauth">授权 </button>
+			</div>
+		</div>
+		
+	</body>
+</html>

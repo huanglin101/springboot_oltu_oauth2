@@ -1,0 +1,43 @@
+server: 
+  port: 8901
+spring:
+ #数据库配置
+  datasource: 
+    name: test
+    url: jdbc:mysql://127.0.0.1/test?useUnicode=true&characterEncoding=utf8
+    driver-class: com.mysql.jdbc.Driver
+    username: root
+    password: admin
+    validationQuery: SELECT 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 28800
+    testOnBorrow: false
+    testWhileIdle: true
+    testOnReturn: false
+  #redis 配置
+  redis: 
+    host: 10.9.4.224
+    port: 6379
+    password: 
+    defaultExpireDay: 45
+    paperRedisIndex: 1
+    examRedisIndex: 2
+    areaRedisIndex: 3
+    # 最小连接数目
+    maxIdle: 50   
+    # 最大数连接数
+    maxActive: 1000 
+    #立连接等待时间
+    maxWait: 1000
+    #连接是否可用
+    testOnBorrow: true
+    
+  http:  
+      encoding.charset: UTF-8  
+      encoding.enable: true  
+      encoding.force: true
+            
+  mvc: 
+      view:  
+          prefix: /WEB-INF/jsp/  
+          suffix: .jsp  
