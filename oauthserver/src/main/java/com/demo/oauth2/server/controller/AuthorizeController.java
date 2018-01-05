@@ -1,4 +1,4 @@
-package com.demo.oauth2.controller;
+package com.demo.oauth2.server.controller;
 
 import java.net.URI;
 import java.util.HashMap;
@@ -14,7 +14,6 @@ import org.apache.oltu.oauth2.as.request.OAuthAuthzRequest;
 import org.apache.oltu.oauth2.as.response.OAuthASResponse;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.error.OAuthError;
-import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
 import org.apache.oltu.oauth2.common.message.OAuthResponse;
 import org.apache.oltu.oauth2.common.message.types.ResponseType;
 import org.slf4j.Logger;
@@ -27,8 +26,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import com.demo.oauth2.constant.ErrorConstants;
-import com.demo.oauth2.service.OauthClientService;
+
+import com.demo.oauth2.server.constant.ErrorConstants;
+import com.demo.oauth2.server.service.OauthClientService;
+import com.demo.oauth2.server.untils.ControllerHelper;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -72,20 +73,16 @@ public class AuthorizeController {
 			OAuthResponse oAuthResponse;
 			String clientId=oauthRequest.getClientId();
 			//校验client信息
-			if(!oauthClientService.checkClientId(clientId))
+			if(!oauthClientService.checkClient(clientId))
 			{
-				oAuthResponse=OAuthASResponse.errorResponse(HttpServletResponse.SC_BAD_REQUEST)
-						.setError(OAuthError.TokenResponse.INVALID_CLIENT)
-						.setErrorDescription(ErrorConstants.ERROR_CLIENT_MSG)
-						.buildJSONMessage() ;
-				return new  ResponseEntity(oAuthResponse.getBody(),HttpStatus.valueOf(oAuthResponse.getResponseStatus()));
+				return ControllerHelper.getResponseEntity(HttpServletResponse.SC_BAD_REQUEST, OAuthError.TokenResponse.INVALID_CLIENT, ErrorConstants.ERROR_CLIENT_MSG);				
 			}
 			//获取登陆信息
 			//已经登录校验内部token信息,没有登陆，校验登陆信息
 			String token=request.getParameter("token");
 			if(StringUtils.isEmpty(token))//token不存在及用户没有登陆，非法访问
 			{				
-				return getResponseEntity(HttpServletResponse.SC_BAD_REQUEST, OAuthError.CodeResponse.ACCESS_DENIED, ErrorConstants.ERROR_CLIENT_LOGIN);
+				return ControllerHelper.getResponseEntity(HttpServletResponse.SC_BAD_REQUEST, OAuthError.CodeResponse.ACCESS_DENIED, ErrorConstants.ERROR_CLIENT_LOGIN);
  			}
 			else {//校验token 服务器端对应的token是否存在，及获取用户信息等
 //				checktoken()
@@ -97,7 +94,8 @@ public class AuthorizeController {
 			{
 				OAuthIssuerImpl oAuthIssuerImpl=new OAuthIssuerImpl(new MD5Generator());
 				authcode=oAuthIssuerImpl.authorizationCode();
-				
+				//保存授权码
+				oauthClientService.saveCode(clientId, authcode);				
 			}
 			//Oauth 响应
 			OAuthASResponse.OAuthAuthorizationResponseBuilder builder=OAuthASResponse.authorizationResponse(request, HttpServletResponse.SC_FOUND);
@@ -120,14 +118,5 @@ public class AuthorizeController {
 	
 	
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private ResponseEntity getResponseEntity(int htttResponseState,String errorCode,String errorMsg) throws OAuthSystemException
-	{							 
-		 OAuthResponse oAuthResponse = OAuthASResponse.errorResponse(htttResponseState)
-				.setError(errorCode)
-				.setErrorDescription(errorMsg)
-				.buildJSONMessage();
-		return new  ResponseEntity(oAuthResponse.getBody(),HttpStatus.valueOf(oAuthResponse.getResponseStatus()));
 	
-	}
 }

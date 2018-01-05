@@ -35,6 +35,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.oltu.oauth2</groupId>
+			<artifactId>
+				org.apache.oltu.oauth2.resourceserver
+			</artifactId>
+			<version>1.0.2</version>
+			<type>bundle</type>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -1,4 +1,4 @@
-package com.demo.oauth2.entity;
+package com.demo.oauth2.server.entity;
 
 import java.util.ArrayList;
 import java.util.Date;

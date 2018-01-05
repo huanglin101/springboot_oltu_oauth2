@@ -1,4 +1,4 @@
-package com.demo.oauth2.entity;
+package com.demo.oauth2.server.entity;
 
 import java.io.Serializable;
 import java.util.Date;

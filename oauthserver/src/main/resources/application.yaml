@@ -19,10 +19,8 @@ spring:
     host: 10.9.4.224
     port: 6379
     password: 
-    defaultExpireDay: 45
-    paperRedisIndex: 1
-    examRedisIndex: 2
-    areaRedisIndex: 3
+    defaultExpireDay: 45  
+    redisIndex: 0
     # 最小连接数目
     maxIdle: 50   
     # 最大数连接数

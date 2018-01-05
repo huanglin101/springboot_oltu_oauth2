@@ -8,7 +8,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 
 @SpringBootApplication
-@MapperScan(basePackages = "com.demo.oauth2.mapper")
+@MapperScan(basePackages = "com.demo.oauth2.*.mapper")
 public class OauthserverApplication extends SpringBootServletInitializer {
 
 	@Override

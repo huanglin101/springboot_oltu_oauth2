@@ -1,4 +1,4 @@
-package com.demo.oauth2.config;
+package com.demo.oauth2.server.server.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -9,17 +9,12 @@ public class RedisConfig {
 	private String host ;
 	private int port ;
 	private String password ;
-    private int examRedisIndex;
+    private int redisIndex;
 	private int maxIdle;
 	private int maxActive;
 	private int maxWait;
 	private boolean testOnBorrow;
-	public int getExamRedisIndex() {
-		return examRedisIndex;
-	}
-	public void setExamRedisIndex(int examRedisIndex) {
-		this.examRedisIndex = examRedisIndex;
-	}
+	
 	public String getHost() {
 		return host;
 	}
@@ -61,6 +56,12 @@ public class RedisConfig {
 	}
 	public void setTestOnBorrow(boolean testOnBorrow) {
 		this.testOnBorrow = testOnBorrow;
+	}
+	public int getRedisIndex() {
+		return redisIndex;
+	}
+	public void setRedisIndex(int redisIndex) {
+		this.redisIndex = redisIndex;
 	}
 	
 }

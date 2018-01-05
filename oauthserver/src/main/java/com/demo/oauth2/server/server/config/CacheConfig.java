@@ -1,4 +1,4 @@
-package com.demo.oauth2.config;
+package com.demo.oauth2.server.server.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class CacheConfig {
 			factory.setPort(redisConfig.getPort());
 			factory.setPassword(redisConfig.getPassword());
 			factory.setUsePool(true);
-			factory.setDatabase(redisConfig.getExamRedisIndex());
+			factory.setDatabase(redisConfig.getRedisIndex());
 			return factory;
 		}
 

@@ -1,12 +1,14 @@
-package com.demo.oauth2.controller;
+package com.demo.oauth2.server.controller;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@ResponseBody
 public class LoginController {
 
 	/**
@@ -15,7 +17,7 @@ public class LoginController {
 	 * @param pword
 	 * @return
 	 */
-	@RequestMapping("/login")
+	@RequestMapping("/login")	
 	public Object login(String username,String pword) {
 		Map<String, String> res=new HashMap<>();
 		if(!("admin".equals(username) && "123456".equals(pword)))

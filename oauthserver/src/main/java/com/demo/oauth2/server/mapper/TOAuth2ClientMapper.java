@@ -1,10 +1,14 @@
-package com.demo.oauth2.mapper;
+package com.demo.oauth2.server.mapper;
 
-import com.demo.oauth2.entity.TOAuth2Client;
-import com.demo.oauth2.entity.TOAuth2ClientCriteria;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.demo.oauth2.server.entity.TOAuth2Client;
+import com.demo.oauth2.server.entity.TOAuth2ClientCriteria;
+
+@Mapper
 public interface TOAuth2ClientMapper {
     int countByExample(TOAuth2ClientCriteria example);
 
