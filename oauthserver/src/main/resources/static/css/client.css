@@ -1,0 +1,9 @@
+.clienttable{
+	margin:50px;
+}
+.clienttable tr{
+	height:50px;
+}
+.clienttable tr td input{
+	width:300px;
+}

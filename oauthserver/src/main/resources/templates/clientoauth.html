@@ -1,0 +1,44 @@
+<html>
+		<head>
+		<meta charset="utf-8" />
+		<title>客户端请求授权</title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width" />
+		<base href="/" />
+		<link rel="stylesheet" type="text/css"
+		    href="/webjars/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css"
+		    href="/css/client.css" />
+		<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>		
+		<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/webjars/js-cookie/js.cookie.js"></script>
+	</head>
+	<body>
+		<form id="authform" method="post" action="http://192.168.25.143:8901/requestAuth">
+						
+			<table style="margin:50px;" class="clienttable">
+				<tr>
+					<td >client_id</td>
+					<td><input  name="clientId" /></td>
+				</tr>
+				<tr>
+					<td>clientSecret</td>
+					<td><input  name="clientSecret" /></td>
+				</tr>
+				<tr>
+					<td>tokenEndpoint</td>
+					<td><input  name="authzEndpoint" value="http://192.168.25.143:8901/Oauth/authorize"  /></td>
+				</tr>
+							
+				<tr>
+					<td>redirect_uri</td>
+					<td><input  name="redirectUri" value="http://192.168.25.143:8901/redirect" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td style=""><button type="submit" >请求授权 </button></td>					
+				</tr>				
+			</table>			
+		</form>	
+	</body>
+</html>
