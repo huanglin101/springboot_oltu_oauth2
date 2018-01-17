@@ -8,7 +8,7 @@ function getQueryString(name) {
 			
 $(function(){
 	
-	var url="http://192.168.25.143:8901/login";
+	var url="http://localhost:8901/login";
 	var clientId=getQueryString("client_id");
 	var responsetype=getQueryString("response_type");
 	var redirect_uri=getQueryString("redirect_uri");

@@ -103,8 +103,9 @@ public class RedirectController {
 	           oauthParams.setAccessToken(oauthResponse.getAccessToken());
 	           oauthParams.setExpiresIn(oauthResponse.getExpiresIn());
 	           oauthParams.setRefreshToken(Utils.isIssued(oauthResponse.getRefreshToken()));
-	           
-	           return new ModelAndView("test");
+	           Map<String, String> model =new HashMap<>();
+	           model.put("token",oauthParams.getAccessToken());
+	           return new ModelAndView("test",model);
 		} catch (Exception e) {
 			logger.error(e.getMessage(),e);
 			return null;

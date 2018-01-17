@@ -61,7 +61,7 @@ public class AccessTokenController {
 	            //生成OAuth响应
 	            oAuthResponse = OAuthASResponse
 	                    .tokenResponse(HttpServletResponse.SC_OK)
-	                    .setAccessToken(accessToken)
+	                    .setAccessToken(accessToken)	                   
 	                    .setExpiresIn(String.valueOf( 3600L))
 	                    .buildJSONMessage();
 
